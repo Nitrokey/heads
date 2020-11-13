@@ -25,3 +25,4 @@ clean
 *.fv
 *.bin
 *.bad
+release_*
