@@ -7,11 +7,9 @@ stages:
 
 variables:
   #Repo for shared scripts (pull.sh release.sh, nightly_upload.sh):
-  GIT_STRATEGY: clone     #This seems to have no effect also set in webinterface
-  GIT_DEPTH: 0          #This seems to have no effect also set in webinterface
-  GIT_SUBMODULE_STRATEGY: recursive #This seems to have no effect also set in webinterfac
-  SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
-  REPO_USER: nitrokey
+  GIT_STRATEGY: clone               #This seems to have no effect also set in webinterface
+  GIT_DEPTH: 0                      #This seems to have no effect also set in webinterface
+  GIT_SUBMODULE_STRATEGY: recursive #This seems to have no effect also set in webinterface
   REPO_NAME: heads
   MAIN_BRANCH: nitropad
   DEVICE_FOLDER: "nitropad"
@@ -22,7 +20,7 @@ variables:
   UPLOAD_FOLDER: "heads"
 
 build-heads-x230:
-  image: registry.git.dotplex.com/nitrokey/heads/heads-build:latest
+  image: registry.git.nitrokey.com/nitrokey/heads/heads-build:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   tags:
@@ -48,7 +46,7 @@ build-heads-x230:
     expire_in: 30 hrs
 
 build-heads-t430:
-  image: registry.git.dotplex.com/nitrokey/heads/heads-build:latest
+  image: registry.git.nitrokey.com/nitrokey/heads/heads-build:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   tags:
