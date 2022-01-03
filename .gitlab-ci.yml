@@ -15,7 +15,7 @@ variables:
   DEVICE_FOLDER: "nitropad"
   COMMON_PULL: "true"
   COMMON_UPLOAD_NIGHTLY: "false"
-  COMMON_GITHUB_RELEASE: "false"
+  COMMON_GITHUB_RELEASE: "true"
   COMMON_UPLOAD_FILES: "true"
   UPLOAD_FOLDER: "heads"
 
