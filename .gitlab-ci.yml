@@ -27,7 +27,6 @@ build-heads-x230:
     - docker
   stage: build
   script: 
-    - make BOARD=x230-flash
     - make BOARD=x230-hotp-verification
     - ./create-npf.sh x230-hotp-verification
     - blobs/xx30/download_clean_me.sh
@@ -53,7 +52,6 @@ build-heads-t430:
     - docker
   stage: build
   script: 
-    - make BOARD=t430-flash
     - make BOARD=t430-hotp-verification
     - ./create-npf.sh t430-hotp-verification
     - blobs/xx30/download_clean_me.sh
