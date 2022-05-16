@@ -123,10 +123,12 @@ get_menu_option() {
 		whiptail --title "Select your boot option" \
 			--menu "Choose the boot option [1-$n, a to abort]:" 0 80 8 \
 			-- $MENU_OPTIONS \
+			'a' ' <-- Return to main menu' \
 			2>/tmp/whiptail || die "Aborting boot attempt"
 
 		option_index=$(cat /tmp/whiptail)
-	else
+			
+	else #FIXME legacy code, not used anymore  
 		echo "+++ Select your boot option:"
 		n=0
 		while read option
@@ -140,12 +142,12 @@ get_menu_option() {
 			-p "Choose the boot option [1-$n, a to abort]: " \
 			option_index
 
-		if [ "$option_index" = "a" ]; then
-			die "Aborting boot attempt"
-		fi
+	fi
+	
+	if [ "$option_index" = "a" ]; then
+	    die "Aborting boot attempt" #will return to main menu
 	fi
 	first_menu="n"
-
 	option=`head -n $option_index $TMP_MENU_FILE | tail -1`
 	parse_option
 }
