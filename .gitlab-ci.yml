@@ -23,6 +23,7 @@ build-heads-x230:
   image: registry.git.nitrokey.com/nitrokey/heads/heads-build:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
   tags:
     - docker
   stage: build
@@ -48,6 +49,7 @@ build-heads-t430:
   image: registry.git.nitrokey.com/nitrokey/heads/heads-build:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
   tags:
     - docker
   stage: build
