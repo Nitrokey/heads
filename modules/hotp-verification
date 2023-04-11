@@ -2,11 +2,12 @@ modules-$(CONFIG_HOTPKEY) += hotp-verification
 
 hotp-verification_depends := libusb $(musl_dep)
 
-hotp-verification_version := b2b924eabd4d713f73bfaa298cc4c759421caf8f
+# v1.4-RC1-0-ge09d004, https://github.com/Nitrokey/nitrokey-hotp-verification/releases/tag/v1.4-RC1
+hotp-verification_version := e09d004487474037e9c56a921bce811ca42cc8e3
 hotp-verification_dir := hotp-verification-$(hotp-verification_version)
 hotp-verification_tar := nitrokey-hotp-verification-$(hotp-verification_version).tar.gz
 hotp-verification_url := https://github.com/Nitrokey/nitrokey-hotp-verification/archive/$(hotp-verification_version).tar.gz
-hotp-verification_hash := 424d3e0b0d35d3d9ce16d68fae7d19f23bc0d4317f5ccc879c04e18c3f9bdfc1
+hotp-verification_hash := 4e0769b2a6cfbd9c2e8d992613ea8d6ebb2d231fffb91eb170b83bdca23157e9
 
 hotp-verification_target := \
 	$(MAKE_JOBS) \
