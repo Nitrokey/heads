@@ -28,8 +28,8 @@ build-heads-x230:
     - docker
   stage: build
   script: 
-    - make BOARD=x230-hotp-verification
-    - ./create-npf.sh x230-hotp-verification
+#    - make BOARD=x230-hotp-verification
+#    - ./create-npf.sh x230-hotp-verification
     - blobs/xx30/download_clean_me.sh
     - make BOARD=x230-hotp-maximized
     - ./create-npf.sh x230-hotp-maximized
@@ -54,8 +54,8 @@ build-heads-t430:
     - docker
   stage: build
   script: 
-    - make BOARD=t430-hotp-verification
-    - ./create-npf.sh t430-hotp-verification
+#    - make BOARD=t430-hotp-verification
+#    - ./create-npf.sh t430-hotp-verification
     - blobs/xx30/download_clean_me.sh
     - make BOARD=t430-hotp-maximized
     - ./create-npf.sh t430-hotp-maximized
