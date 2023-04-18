@@ -30,9 +30,10 @@ build-heads-x230:
   script: 
 #    - make BOARD=x230-hotp-verification
 #    - ./create-npf.sh x230-hotp-verification
+    - blobs/xx30/download_clean_me.sh
     - make BOARD=x230-hotp-maximized
     - ./create-npf.sh x230-hotp-maximized
-    - blobs/xx30/download_clean_me.sh
+
     - mkdir -p artifacts
     - find /builds/ -name "*.rom"
     - find /builds/ -name "*.npf"
@@ -56,9 +57,9 @@ build-heads-t430:
   script: 
 #    - make BOARD=t430-hotp-verification
 #    - ./create-npf.sh t430-hotp-verification
+    - blobs/xx30/download_clean_me.sh
     - make BOARD=t430-hotp-maximized
     - ./create-npf.sh t430-hotp-maximized
-    - blobs/xx30/download_clean_me.sh
     - mkdir -p artifacts
     - ls /builds/
     - find /builds/ -name "*.rom"
