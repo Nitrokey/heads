@@ -30,7 +30,7 @@ build-heads-x230:
   script: 
 #    - make BOARD=x230-hotp-verification
 #    - ./create-npf.sh x230-hotp-verification
-    - blobs/xx30/download_clean_me.sh -m /blobs/xx30/me_cleaner.py
+    - blobs/xx30/download_clean_me.sh -m $(readlink -f ./blobs/xx30/me_cleaner.py)
     - make BOARD=x230-hotp-maximized
     - ./create-npf.sh x230-hotp-maximized
 
@@ -57,7 +57,7 @@ build-heads-t430:
   script: 
 #    - make BOARD=t430-hotp-verification
 #    - ./create-npf.sh t430-hotp-verification
-    - blobs/xx30/download_clean_me.sh -m /blobs/xx30/me_cleaner.py
+    - blobs/xx30/download_clean_me.sh -m $(readlink -f ./blobs/xx30/me_cleaner.py)
     - make BOARD=t430-hotp-maximized
     - ./create-npf.sh t430-hotp-maximized
     - mkdir -p artifacts
