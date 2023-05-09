@@ -35,7 +35,10 @@ MAX_HOTP_GPG_PIN_LENGTH=25
 # What are the Security components affected by custom passwords
 CUSTOM_PASS_AFFECTED_COMPONENTS=""
 
-RSA_KEY_LENGTH=3072
+#RSA_KEY_LENGTH=3072
+KEY_DESC="NIST-P256"
+KEY_OPTION_ONE=2
+KEY_OPTION_TWO=3
 
 GPG_USER_NAME="OEM Key"
 GPG_KEY_NAME=`date +%Y%m%d%H%M%S`
@@ -105,20 +108,20 @@ gpg_key_reset()
     {
         echo admin
         echo key-attr
-        echo 1 # RSA
-        echo ${RSA_KEY_LENGTH} #Signing key size set to RSA_KEY_LENGTH
+				echo ${KEY_OPTION_ONE} # ECC
+				echo ${KEY_OPTION_TWO} # P-256
         echo ${ADMIN_PIN_DEF}
-        echo 1 # RSA
-        echo ${RSA_KEY_LENGTH} #Encryption key size set to RSA_KEY_LENGTH
+				echo ${KEY_OPTION_ONE} # ECC
+				echo ${KEY_OPTION_TWO} # P-256
         echo ${ADMIN_PIN_DEF}
-        echo 1 # RSA
-        echo ${RSA_KEY_LENGTH} #Authentication key size set to RSA_KEY_LENGTH
+				echo ${KEY_OPTION_ONE} # ECC
+				echo ${KEY_OPTION_TWO} # P-256
         echo ${ADMIN_PIN_DEF}
-    } | gpg --command-fd=0 --status-fd=1 --pinentry-mode=loopback --card-edit \
+    } | gpg --command-fd=0 --status-fd=1 --pinentry-mode=loopback --card-edit --expert \
         > /tmp/gpg_card_edit_output 2>&1
     if [ $? -ne 0 ]; then
         ERROR=`cat /tmp/gpg_card_edit_output`
-        whiptail_error_die "Setting key attributed to RSA ${RSA_KEY_LENGTH} bits in USB security dongle failed."
+        whiptail_error_die "Setting key to ${KEY_DESC} in USB security dongle failed."
     fi
     # Generate OEM GPG keys
     {
