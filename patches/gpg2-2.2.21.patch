@@ -25,3 +25,15 @@ diff -u --recursive gnupg-2.2.10/common/ttyio.c gnupg-2.2.10/common/ttyio.c.mod
  	log_error("cannot open '%s': %s\n", tty_get_ttyname (),
                    strerror(errno) );
 
+diff -u --recursive gnupg-2.2.21-org/scd/apdu.c gnupg-2.2.21/scd/apdu.c
+--- gnupg-2.2.21-org/scd/apdu.c	2023-05-14 23:23:35.726974465 +0200
++++ gnupg-2.2.21/scd/apdu.c	2023-05-14 23:24:02.730715934 +0200
+@@ -3137,7 +3137,7 @@
+     }
+ #undef SHORT_RESULT_BUFFER_SIZE
+ 
+-  if ((sw = trylock_slot (slot)))
++  if ((sw = lock_slot (slot)))
+     {
+       xfree (apdu_buffer);
+       xfree (result_buffer);
