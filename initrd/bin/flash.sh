@@ -142,7 +142,7 @@ flash_rom() {
     fi
 
     flashrom $CONFIG_FLASHROM_OPTIONS -w /tmp/${CONFIG_BOARD}.rom \
-      -V -o "/tmp/flashrom-$(date '+%Y%m%d-%H%M%S').log" 2>&1 | flashrom_progress \
+      -o "/tmp/flashrom-$(date '+%Y%m%d-%H%M%S').log" 2>&1 | flashrom_progress \
       || die "$ROM: Flash failed"
   fi
 }
