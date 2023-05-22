@@ -1,0 +1,33 @@
+--- ./clean/linux-6.1/arch/x86/realmode/init.c	2023-04-25 18:02:54.932346344 +0200
++++ linux-6.1/arch/x86/realmode/init.c	2023-04-25 18:06:48.384048760 +0200
+@@ -55,10 +55,12 @@
+ 
+ 	/* Has to be under 1M so we can execute real-mode AP code. */
+ 	mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, 1<<20);
+-	if (!mem)
+-		pr_info("No sub-1M memory is available for the trampoline\n");
+-	else
+-		set_real_mode_mem(mem);
++	if (!mem) {
++		mem = 0x4000;
++		pr_info("No sub-1M memory is available for the trampoline, guessing %p\n", mem);
++	}
++
++	set_real_mode_mem(mem);
+ 
+ 	/*
+ 	 * Unconditionally reserve the entire fisrt 1M, see comment in
+@@ -202,8 +204,11 @@
+ 
+ static int __init init_real_mode(void)
+ {
+-	if (!real_mode_header)
+-		panic("Real mode trampoline was not allocated");
++	if (!real_mode_header) {
++		// ignore for now
++		pr_warn("Real mode trampoline was not allocated");
++		return 0;
++	}
+ 
+ 	setup_real_mode();
+ 	set_real_mode_permissions();
