@@ -45,7 +45,16 @@ else ifeq "$(CONFIG_COREBOOT_VERSION)" "talos_2"
 	coreboot_version = git
 	coreboot_commit_hash = b2d4cc237c51b84c0b465976a56c6deb21b9f263
 	coreboot_repo := https://github.com/Dasharo/coreboot
-
+else ifeq "$(CONFIG_COREBOOT_VERSION)" "nv4x_adl"
+	coreboot_version = git
+	coreboot_commit_hash = novacustom_nv4x_adl_v1.6.0
+	coreboot_repo := https://github.com/Dasharo/coreboot
+	coreboot_depends := $(if $(CONFIG_NITROKEY_BLOBS), nitrokey-blobs)
+else ifeq "$(CONFIG_COREBOOT_VERSION)" "ns5x_adl"
+	coreboot_version = git
+	coreboot_commit_hash = novacustom_ns5x_adl_v1.6.0
+	coreboot_repo := https://github.com/Dasharo/coreboot
+	coreboot_depends := $(if $(CONFIG_NITROKEY_BLOBS), nitrokey-blobs)
 else
 	$(error "$(BOARD): does not specify coreboot version under CONFIG_COREBOOT_VERSION")
 endif 
@@ -64,7 +73,7 @@ CONFIG_COREBOOT_CONFIG ?= config/coreboot-$(BOARD).config
 # Ensure that touching the config file will force a rebuild
 $(build)/$(coreboot_dir)/.configured: $(CONFIG_COREBOOT_CONFIG)
 
-EXTRA_FLAGS ?= -fdebug-prefix-map=$(pwd)=heads -gno-record-gcc-switches -Wno-error=packed-not-aligned
+EXTRA_FLAGS ?= -fdebug-prefix-map=$(pwd)=heads -gno-record-gcc-switches -Wno-error=packed-not-aligned -Wno-address-of-packed-member
 
 coreboot_configure := \
 	mkdir -p "$(build)/$(coreboot_dir)" \
