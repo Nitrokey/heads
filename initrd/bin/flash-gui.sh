@@ -74,7 +74,13 @@ while true; do
             whiptail --title 'ROM Flashed Successfully' \
               --msgbox "${ROM#"/media/"}\n\nhas been flashed successfully.\n\nPress Enter to reboot\n" 0 80
             umount /media
-            /bin/reboot
+            
+						
+    				if [ "${CONFIG_BOARD%_*}" = nitropad-nv41 || "${CONFIG_BOARD%_*}" = nitropad-ns51 ]; then
+							/bin/nitropad-shutdown.sh
+						else
+							/bin/reboot
+						fi
           else
             exit
           fi
