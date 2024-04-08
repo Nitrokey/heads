@@ -475,7 +475,7 @@ show_options_menu()
       root-hashes-gui.sh
       ;; 
     a )
-      change-time.sh
+      change-time
       ;;
     x )
       recovery "User requested recovery shell"
