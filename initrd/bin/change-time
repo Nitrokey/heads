@@ -51,7 +51,7 @@ if [[ ${OUTPUT} == d* ]]; then
     change-time
 else
     hwclock -w
-    echo -e "the date as been sucessfully set to $year-$month-$day $hour:$min:$sec"
+    echo -e "the date has been sucessfully set to $year-$month-$day $hour:$min:$sec"
     echo -e "\n"
 
     echo -e "press any key to return to the menu"
