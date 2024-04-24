@@ -1,14 +1,10 @@
 #!/bin/bash
 
 set -exuo pipefail
-
 targets="x230-hotp-maximized t430-hotp-maximized nitropad-nv41 nitropad-ns50"
 
 version=$(git describe --dirty)
 
-
-# prepare
-./blobs/xx30/download_clean_me.sh -m $(readlink -f ./blobs/xx30/me_cleaner.py)
 
 rm -rf artifacts
 mkdir -p artifacts
