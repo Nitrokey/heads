@@ -3,7 +3,7 @@
 set -exuo pipefail
 targets="x230-hotp-maximized t430-hotp-maximized nitropad-nv41 nitropad-ns50"
 
-version=$(git describe --dirty)
+version=$(git describe --abbrev=7 --tags --dirty)
 
 build_dir="/builds/nitrokey/heads/build/x86/"
 
@@ -13,8 +13,8 @@ mkdir -p artifacts
 for target in $targets
 do
 
-	rm -rf build/x86/log
-	rm -rf build/x86/$target
+	rm -rf {build_dir}log
+	rm -rf {build_dir}$target
 	
 	make BOARD=$target
 
