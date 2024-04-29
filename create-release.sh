@@ -5,6 +5,7 @@ targets="x230-hotp-maximized t430-hotp-maximized nitropad-nv41 nitropad-ns50"
 
 version=$(git describe --dirty)
 
+build_dir="/builds/nitrokey/heads/build/x86/"
 
 rm -rf artifacts
 mkdir -p artifacts
@@ -19,9 +20,8 @@ do
 
 	mytarget=$(echo $target | sed -e 's/hotp-maximized/maximized/g' | sed -e 's/nitropad-//g')
 
-
-	cp build/x86/${target}/nitrokey-${target}-${version}.zip artifacts/firmware-nitropad-${mytarget}-${version}.zip
-	cp build/x86/${target}/nitrokey-${target}-${version}.rom artifacts/firmware-nitropad-${mytarget}-${version}.rom
+	cp ${build_dir}${target}/nitrokey-${target}-${version}.zip artifacts/firmware-nitropad-${mytarget}-${version}.zip
+	cp ${build_dir}${target}/nitrokey-${target}-${version}.rom artifacts/firmware-nitropad-${mytarget}-${version}.rom
 	
 	# assemble "old style" .npf from new .zip format for backwards compatibility
 	rm -rf /tmp/heads/
@@ -37,8 +37,8 @@ do
 
 	if [[ "$target" = "t430-hotp-maximized" ]] || [[ "$target" = "x230-hotp-maximized" ]]; then
 
-		cp build/x86/${target}/heads-${target}-${version}-top.rom artifacts/firmware-nitropad-${mytarget}-${version}-top.rom
-		cp build/x86/${target}/heads-${target}-${version}-bottom.rom artifacts/firmware-nitropad-${mytarget}-${version}-bottom.rom
+		cp ${build_dir}${target}/heads-${target}-${version}-top.rom artifacts/firmware-nitropad-${mytarget}-${version}-top.rom
+		cp ${build_dir}${target}/heads-${target}-${version}-bottom.rom artifacts/firmware-nitropad-${mytarget}-${version}-bottom.rom
 
 	fi
 
