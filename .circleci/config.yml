@@ -219,3 +219,5 @@ workflows:
           name: msi_z790p_ddr5
           target: msi_z790p_ddr5
           subcommand: ""
+          requires:
+            - prep_env
