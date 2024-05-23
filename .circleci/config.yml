@@ -216,46 +216,6 @@ workflows:
 # for the parallel boards built at the end, and also save_cache.
 
       - build_and_persist:
-          name: nitropad-nv41
-          target: nitropad-nv41
-          subcommand: ""
-          requires:
-            - prep_env
-
-      #Cache one workspace per architecture. Make sure workspace caches are chainloaded and the last in chain for an arch is saved.
-      - save_cache:
-          requires:
-            - nitropad-nv41
-
-      - build_and_persist:
-          name: nitropad-ns50
-          target: nitropad-ns50
-          subcommand: ""
-          requires:
-            - nitropad-nv41
-
-      - build_and_persist:
-          name: msi_z690a_ddr4
-          target: msi_z690a_ddr4
-          subcommand: ""
-          requires:
-            - nitropad-nv41
-
-      - build_and_persist:
-          name: msi_z690a_ddr5
-          target: msi_z690a_ddr5
-          subcommand: ""
-          requires:
-            - nitropad-nv41
-
-      - build_and_persist:
-          name: msi_z790p_ddr4
-          target: msi_z790p_ddr4
-          subcommand: ""
-          requires:
-            - nitropad-nv41
-
-      - build_and_persist:
           name: msi_z790p_ddr5
           target: msi_z790p_ddr5
           subcommand: ""
