@@ -1330,12 +1330,24 @@ whiptail --msgbox "
     $HEIGHT $WIDTH --title "Configured secrets"
 
 ## all done -- reboot
-whiptail --msgbox "
-    OEM Factory Reset / Re-Ownership has completed successfully\n\n
-    After rebooting, you will need to generate new TOTP/HOTP secrets\n
-    when prompted in order to complete the setup process.\n\n
-    Press Enter to reboot.\n" \
-    $HEIGHT $WIDTH --title "OEM Factory Reset / Re-Ownership Complete"
+##if board is NV41 or NS50 UI message says to "restart it manually" since the reboot script is shutingdown these pc and not rebooting them
+if [ "$CONFIG_BOARD" = "nitropad-nv41" ] || [ "$CONFIG_BOARD" = "nitropad-ns50" ]; then
+    whiptail --msgbox "
+        OEM Factory Reset / Re-Ownership has completed successfully\n\n
+        After rebooting, you will need to generate new TOTP/HOTP secrets\n
+        when prompted in order to complete the setup process.\n\n
+        Press Enter to shutdown the computer and please restart it manually.\n" \
+        $HEIGHT $WIDTH --title "OEM Factory Reset / Re-Ownership Complete"
+else
+    whiptail --msgbox "
+        OEM Factory Reset / Re-Ownership has completed successfully\n\n
+        After rebooting, you will need to generate new TOTP/HOTP secrets\n
+        when prompted in order to complete the setup process.\n\n
+        Press Enter to reboot.\n" \
+        $HEIGHT $WIDTH --title "OEM Factory Reset / Re-Ownership Complete"
+
+fi
+
 
 # Clean LUKS secrets
 luks_secrets_cleanup
