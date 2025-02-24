@@ -96,6 +96,7 @@ jobs:
             ./blobs/xx30/optiplex_7010_9010.sh ./blobs/xx30
       # me_cleaner.py present under heads blobs/utils/me_cleaner dir comes from https://github.com/corna/me_cleaner/blob/43612a630c79f3bc6f2653bfe90dfe0b7b137e08/me_cleaner.py
       - run:
+          # me_cleaner.py present under heads xx30 blobs dir comes from https://github.com/corna/me_cleaner/blob/43612a630c79f3bc6f2653bfe90dfe0b7b137e08/me_cleaner.py
           name: Download and neuter xx30 ME (keep generated GBE and extracted IFD in tree)
           command: |
             ./blobs/xx30/download_clean_me_manually.sh -m $(readlink -f ./blobs/utils/me_cleaner/me_cleaner.py)
@@ -335,117 +336,13 @@ workflows:
           requires:
             - EOL_t480-hotp-maximized
 
+      #TODO: move away of 24.02.01 coreboot and depend on optiplex specific dasharo commit
       - build:
-          name: EOL_optiplex-7010_9010-hotp-maximized
-          target: EOL_optiplex-7010_9010-hotp-maximized
+          name: t430-hotp-maximized
+          target: t430-hotp-maximized
           subcommand: ""
           requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_optiplex-7010_9010_TXT-maximized
-          target: EOL_optiplex-7010_9010_TXT-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_optiplex-7010_9010_TXT-hotp-maximized
-          target: EOL_optiplex-7010_9010_TXT-hotp-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_x230-hotp-maximized
-          target: EOL_x230-hotp-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_x230-hotp-maximized_usb-kb
-          target: EOL_x230-hotp-maximized_usb-kb
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_x230-maximized-fhd_edp
-          target: EOL_x230-maximized-fhd_edp
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_x230-hotp-maximized-fhd_edp
-          target: EOL_x230-hotp-maximized-fhd_edp
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_w530-hotp-maximized
-          target: EOL_w530-hotp-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_t430-maximized
-          target: EOL_t430-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_w530-maximized
-          target: EOL_w530-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_UNTESTED_t530-maximized
-          target: EOL_UNTESTED_t530-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_UNTESTED_t530-hotp-maximized
-          target: EOL_UNTESTED_t530-hotp-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_UNTESTED_t440p-maximized
-          target: EOL_UNTESTED_t440p-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_UNTESTED_t440p-hotp-maximized
-          target: EOL_UNTESTED_t440p-hotp-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_UNTESTED_w541-maximized
-          target: EOL_UNTESTED_w541-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-      - build:
-          name: EOL_UNTESTED_w541-hotp-maximized
-          target: EOL_UNTESTED_w541-hotp-maximized
-          subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
+            - x230-hotp-maximized
 
       - build:
           name: qemu-coreboot-fbwhiptail-tpm2-hotp
@@ -478,22 +375,22 @@ workflows:
             - librem_14
 
       - build:
-          name: EOL_librem_15v3
-          target: EOL_librem_15v3
+          name: librem_15v3
+          target: librem_15v3
           subcommand: ""
           requires:
             - librem_14
 
       - build:
-          name: EOL_librem_13v4
-          target: EOL_librem_13v4
+          name: librem_13v4
+          target: librem_13v4
           subcommand: ""
           requires:
             - librem_14
 
       - build:
-          name: EOL_librem_15v4
-          target: EOL_librem_15v4
+          name: librem_15v4
+          target: librem_15v4
           subcommand: ""
           requires:
             - librem_14
@@ -519,6 +416,7 @@ workflows:
           requires:
             - librem_14
 
+      # dasharo release, share 24.02.01 utils/crossgcc
       - build:
           name: librem_l1um_v2
           target: librem_l1um_v2
@@ -542,17 +440,26 @@ workflows:
           requires:
             - novacustom-nv4x_adl
 
-      #NovaCustom v56 boards are based on coreboot 24.02.01 fork, so depend on x230
+      # coreboot 4.11
       - build:
-          name: novacustom-v560tu
-          target: novacustom-v560tu
+          name: UNMAINTAINED_kgpe-d16_workstation-usb_keyboard
+          target: UNMAINTAINED_kgpe-d16_workstation-usb_keyboard
           subcommand: ""
           requires:
-            - novacustom-nv4x_adl
+            - librem_l1um
 
+      # coreboot 4.11
       - build:
-          name: novacustom-v540tu
-          target: novacustom-v540tu
+          name: UNMAINTAINED_kgpe-d16_server
+          target: UNMAINTAINED_kgpe-d16_server
           subcommand: ""
           requires:
-            - novacustom-nv4x_adl
+            - librem_l1um
+
+      # coreboot 4.11
+      - build:
+          name: UNMAINTAINED_kgpe-d16_server-whiptail
+          target: UNMAINTAINED_kgpe-d16_server-whiptail
+          subcommand: ""
+          requires:
+            - librem_l1um
