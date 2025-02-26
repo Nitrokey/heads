@@ -87,10 +87,10 @@ jobs:
           name: Download and neuter xx20 ME (keep generated GBE and extracted IFD in tree)
           command: |
             ./blobs/xx20/download_parse_me.sh
-      - run:
-          name: Download Optiplex 7010/9010 blobs
-          command: |
-            ./blobs/xx30/optiplex_7010_9010.sh ./blobs/xx30
+      #- run:
+      #    name: Download Optiplex 7010/9010 blobs
+      #    command: |
+      #      ./blobs/xx30/optiplex_7010_9010.sh ./blobs/xx30
       - run:
           # me_cleaner.py present under heads xx30 blobs dir comes from https://github.com/corna/me_cleaner/blob/43612a630c79f3bc6f2653bfe90dfe0b7b137e08/me_cleaner.py
           name: Download and neuter xx30 ME (keep generated GBE and extracted IFD in tree)
