@@ -12,7 +12,11 @@ else ifeq "t430-hotp-maximized" "$(BOARD)"
 
 CONFIG_BOARD_NAME="Nitropad t430 | v2.6.0"
 
-else
+else ifeq "novacustom-v560tu" "$(BOARD)"
+
+CONFIG_BOARD_NAME="Nitropad V56 | v2.6.0"
+
+else 
 
 CONFIG_BOARD_NAME+=" | v2.6.0"
 
