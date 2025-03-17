@@ -90,7 +90,7 @@ jobs:
           name: Download and neuter xx20 ME (keep generated GBE and extracted IFD in tree)
           command: |
             ./blobs/xx20/download_parse_me.sh
-     - run:
+      - run:
           name: Download Optiplex 7010/9010 blobs
           command: |
             ./blobs/xx30/optiplex_7010_9010.sh ./blobs/xx30
@@ -241,7 +241,7 @@ workflows:
           target: EOL_t480-hotp-maximized
           subcommand: ""
           requires:
-           - x86-musl-cross-make
+            - x86-musl-cross-make
 
       # Make sure workspace caches are chainloaded and the last in chain for an arch is saved
       - save_cache:
@@ -270,7 +270,7 @@ workflows:
           requires:
             - novacustom-nv4x_adl
 
-      #NovaCustom v56 boards are based on coreboot 24.02.01 fork, so depend on x230
+      # NovaCustom v56 boards are based on coreboot 24.02.01 fork, so depend on x230
       - build:
           name: novacustom-v560tu
           target: novacustom-v560tu
