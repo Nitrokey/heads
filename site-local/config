@@ -1,24 +1,33 @@
 
 BRAND_NAME=Nitrokey
+NK_RELEASE="v2.6.0"
 
 CONFIG_TPM_NO_LUKS_DISK_UNLOCK=y
 
 
 ifeq "x230-hotp-maximized" "$(BOARD)"
 
-CONFIG_BOARD_NAME="Nitropad x230 | v2.6.0"
+CONFIG_BOARD_NAME="Nitropad x230 | ${NK_RELEASE}"
 
 else ifeq "t430-hotp-maximized" "$(BOARD)"
 
-CONFIG_BOARD_NAME="Nitropad t430 | v2.6.0"
+CONFIG_BOARD_NAME="Nitropad t430 | ${NK_RELEASE}"
+
+else ifeq "t480-hotp-maximized" "$(BOARD)"
+
+CONFIG_BOARD_NAME="Nitropad t480 | ${NK_RELEASE}"
+
+else ifeq "novacustom-v540tu" "$(BOARD)"
+
+CONFIG_BOARD_NAME="Nitropad V54 | ${NK_RELEASE}"
 
 else ifeq "novacustom-v560tu" "$(BOARD)"
 
-CONFIG_BOARD_NAME="Nitropad V56 | v2.6.0"
+CONFIG_BOARD_NAME="Nitropad V56 | ${NK_RELEASE}"
 
 else 
 
-CONFIG_BOARD_NAME+=" | v2.6.0"
+CONFIG_BOARD_NAME+=" | ${NK_RELEASE}"
 
 endif
 
