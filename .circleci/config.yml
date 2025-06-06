@@ -256,8 +256,8 @@ workflows:
             - EOL_t480-hotp-maximized
 
       - build:
-          name: EOL_optiplex-7010_9010-maximized
-          target: EOL_optiplex-7010_9010-maximized
+          name: t430-hotp-maximized
+          target: t430-hotp-maximized
           subcommand: ""
           requires:
             - EOL_t480-hotp-maximized
