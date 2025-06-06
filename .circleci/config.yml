@@ -255,7 +255,7 @@ workflows:
           requires:
             - EOL_t480-hotp-maximized
             
-       - build:
+      - build:
           name: EOL_t430-hotp-maximized
           target: EOL_t430-hotp-maximized
           subcommand: ""
