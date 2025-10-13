@@ -8,11 +8,11 @@
 # set CONFIG_KBD_DEVTOOLS=y.
 modules-$(CONFIG_KBD) += kbd
 
-kbd_version := 2.6.1
+kbd_version := 2.9.0
 kbd_dir := kbd-$(kbd_version)
 kbd_tar := kbd-$(kbd_version).tar.gz
 kbd_url := https://www.kernel.org/pub/linux/utils/kbd/$(kbd_tar)
-kbd_hash := aaed530a1490d63d041448372e2ad4f38c3179042903251000b71d527c46e945
+kbd_hash := 001e923460430c93c67e145b4aea533f82f205dbf84b79c898a1199900cf5fac 
 
 kbd_configure := CFLAGS=-Os ./configure \
 	$(CROSS_TOOLS) \
