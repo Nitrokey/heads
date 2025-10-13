@@ -2,11 +2,11 @@
 CONFIG_EXFATPROGS ?= y
 modules-$(CONFIG_EXFATPROGS) += exfatprogs
 
-exfatprogs_version := 1.2.1
+exfatprogs_version := 1.2.9
 exfatprogs_dir := exfatprogs-$(exfatprogs_version)
 exfatprogs_tar := exfatprogs-$(exfatprogs_version).tar.xz
 exfatprogs_url := https://github.com/exfatprogs/exfatprogs/releases/download/$(exfatprogs_version)/$(exfatprogs_tar)
-exfatprogs_hash := a6f3b1fb4bd37835c8f8cb421aac4eb75b880a51342b29850c4063973162227b
+exfatprogs_hash := 6233a422d7dae9f3b1f279e6a8dd35f3976d085358c587d5308be274f04725e0
 
 # For reproducibility reasons we have to override the exec_prefix
 # and datarootdir on the configure line so that the Makefiles will
