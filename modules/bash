@@ -1,11 +1,11 @@
 # GNU bash
 modules-$(CONFIG_BASH) += bash
 
-bash_version := 5.1.16
+bash_version := 5.3
 bash_dir := bash-$(bash_version)
 bash_tar := bash-$(bash_version).tar.gz
 bash_url := https://ftpmirror.gnu.org/bash/$(bash_tar)
-bash_hash := 5bac17218d3911834520dad13cd1f85ab944e1c09ae1aba55906be1f8192f558
+bash_hash := 0d5cd86965f869a26cf64f4b71be7b96f90a3ba8b3d74e27e8e9d9d5550f31ba
 
 # --enable-debugger: Enables BASH_SOURCE tracing through functions as well as
 # BASH_ARGV/BASH_ARGC.  (Otherwise BASH_SOURCE[0] is empty when calling a
