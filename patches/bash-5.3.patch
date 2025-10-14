@@ -1,0 +1,11 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -693,7 +693,7 @@ profiling-tests:	${Program}
+ 	@${MAKE} $(BASH_MAKEFLAGS) tests TESTSCRIPT=run-gprof
+ 
+ version.h:  $(SOURCES) config.h Makefile patchlevel.h
+-	$(SHELL) $(SUPPORT_SRC)mkversion.sh -b -S ${topdir} -s $(RELSTATUS) -d $(Version) -o newversion.h \
++	$(SHELL) $(SUPPORT_SRC)mkversion.sh -S ${topdir} -s $(RELSTATUS) -d $(Version) -o newversion.h \
+ 		&& mv newversion.h version.h
+ 
+ bashversion$(EXEEXT): buildversion.o $(SUPPORT_SRC)bashversion.c
