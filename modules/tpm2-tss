@@ -1,11 +1,11 @@
 # TPM2 TSS library
 modules-$(CONFIG_TPM2_TSS) += tpm2-tss
 
-tpm2-tss_version := 3.2.2
+tpm2-tss_version := 4.1.3
 tpm2-tss_dir := tpm2-tss-$(tpm2-tss_version)
 tpm2-tss_tar := tpm2-tss-$(tpm2-tss_version).tar.gz
 tpm2-tss_url := https://github.com/tpm2-software/tpm2-tss/releases/download/$(tpm2-tss_version)/$(tpm2-tss_tar)
-tpm2-tss_hash := ba9e52117f254f357ff502e7d60fce652b3bfb26327d236bbf5ab634235e40f1
+tpm2-tss_hash := 37f1580200ab78305d1fc872d89241aaee0c93cbe85bc559bf332737a60d3be8
 
 #Repro checks:
 # find build/x86/tpm2-tss-3.2.2/src/*/.libs/libtss2-*so* | while read file; do echo "library $file:"; strings $file|grep heads; done
