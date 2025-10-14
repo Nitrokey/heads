@@ -32,4 +32,4 @@ bash_target := $(MAKE_JOBS) \
 
 bash_output := bash
 
-bash_depends := $(musl_dep)
+bash_depends := $(musl_dep) ncurses
