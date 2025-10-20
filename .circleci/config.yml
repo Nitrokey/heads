@@ -87,10 +87,6 @@ jobs:
             # Cache for musl-cross-make module digest (rarely modified).
             - nix-docker-heads-musl-cross-make-{{ checksum "./tmpDir/musl-cross-make.sha256sums" }}{{ .Environment.CACHE_VERSION }}
       - run:
-          name: Download and neuter xx20 ME (keep generated GBE and extracted IFD in tree)
-          command: |
-            ./blobs/xx20/download_parse_me.sh
-      - run:
           # me_cleaner.py present under heads xx30 blobs dir comes from https://github.com/corna/me_cleaner/blob/43612a630c79f3bc6f2653bfe90dfe0b7b137e08/me_cleaner.py
           name: Download and neuter xx30 ME (keep generated GBE and extracted IFD in tree)
           command: |
@@ -98,7 +94,8 @@ jobs:
       - run:
           name: Download, neuter and deguard xx80 ME (keep generated GBE and extracted IFD in tree)
           command: |
-            ./blobs/xx80/download_clean_deguard_me_pad_tb.sh -m $(readlink -f ./blobs/utils/me_cleaner/me_cleaner.py) ./blobs/xx80/
+            ./blobs/xx80/t480_download_clean_deguard_me_pad_tb.sh -m $(readlink -f ./blobs/utils/me_cleaner/me_cleaner.py) ./blobs/xx80/
+            ./blobs/xx80/t480s_download_clean_deguard_me_pad_tb.sh -m $(readlink -f ./blobs/utils/me_cleaner/me_cleaner.py) ./blobs/xx80/
       - persist_to_workspace:
           root: ~/heads
           paths:
@@ -175,11 +172,8 @@ jobs:
           # CircleCI removed their wildcard support, so we have to list precise versions to cache in directory names
           key: nix-docker-heads-coreboot-musl-cross-make-{{ checksum "./tmpDir/coreboot_musl-cross-make.sha256sums" }}{{ .Environment.CACHE_VERSION }}
           paths:
-            - build/x86/coreboot-4.11
             - build/x86/coreboot-24.02.01
             - build/x86/coreboot-24.12
-            - build/x86/coreboot-dasharo
-            - build/x86/coreboot-purism
             - build/x86/musl-cross-make-fd6be58297ee21fcba89216ccd0d4aca1e3f1c5c
             - crossgcc
             - packages
@@ -206,6 +200,7 @@ workflows:
           requires:
             - prep_env
 
+
       # Below, sequentially build one board for each coreboot version.
       # The last board in the sequence is the dependency for the parallel boards built at the end, and also save_cache.
 
@@ -218,7 +213,7 @@ workflows:
             - x86-musl-cross-make
 
 
-      # t480 is based on 24.12 coreboot release, not sharing any buildstack from now, depend on muscl-cross cache
+      # t480 is based on 24.12 coreboot release, not sharing any buildstack from now, depend on muslc-cross cache
       - build_and_persist:
           name: EOL_t480-hotp-maximized
           target: EOL_t480-hotp-maximized
@@ -244,13 +239,21 @@ workflows:
       - build:
           name: EOL_t430-hotp-maximized
           target: EOL_t430-hotp-maximized
+         subcommand: ""
+          requires:
+            - EOL_t480-hotp-maximized
+
+     - build:
+          name: EOL_x230-hotp-maximized
+          target: EOL_x230-hotp-maximized
           subcommand: ""
           requires:
             - EOL_t480-hotp-maximized
 
+      # t480s is based on 24.12 coreboot release, not sharing any buildstack from now, depend on muslc-cross cache
       - build:
-          name: EOL_x230-maximized
-          target: EOL_x230-maximized
+          name: EOL_t480s-hotp-maximized
+          target: EOL_t480s-hotp-maximized
           subcommand: ""
           requires:
             - EOL_t480-hotp-maximized
