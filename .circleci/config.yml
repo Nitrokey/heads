@@ -212,7 +212,6 @@ workflows:
           requires:
             - x86-musl-cross-make
 
-
       # t480 is based on 24.12 coreboot release, not sharing any buildstack from now, depend on muslc-cross cache
       - build_and_persist:
           name: EOL_t480-hotp-maximized
@@ -221,29 +220,14 @@ workflows:
           requires:
             - x86-musl-cross-make
 
-
-      # coreboot 4.11
-      - build_and_persist:
-          name: EOL_librem_l1um
-          target: EOL_librem_l1um
+      - build:
+          name: EOL_t430-hotp-maximized
+          target: EOL_t430-hotp-maximized
           subcommand: ""
-          requires:
-            - x86-musl-cross-make
-
-      # Cache one workspace per architecture
-      # Make sure workspace caches are chainloaded and the last in chain for an arch is saved
-      - save_cache:
           requires:
             - EOL_t480-hotp-maximized
 
       - build:
-          name: EOL_t430-hotp-maximized
-          target: EOL_t430-hotp-maximized
-         subcommand: ""
-          requires:
-            - EOL_t480-hotp-maximized
-
-     - build:
           name: EOL_x230-hotp-maximized
           target: EOL_x230-hotp-maximized
           subcommand: ""
@@ -265,4 +249,3 @@ workflows:
           subcommand: ""
           requires:
             - novacustom-nv4x_adl
-
