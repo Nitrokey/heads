@@ -12,11 +12,11 @@ else ifeq "t430-hotp-maximized" "$(BOARD)"
 
 	CONFIG_BOARD_NAME="Nitropad t430 | v2.6.2"
 
-else ifeq "t480-hotp-maximized" "$(BOARD)"
+else ifeq "Thinkpad T480-hotp-maximized" "$(BOARD)"
 
 	CONFIG_BOARD_NAME="Nitropad t480 | v2.6.2"
 
-else ifeq "t480s-hotp-maximized" "$(BOARD)"
+else ifeq "Thinkpad T480S-hotp-maximized" "$(BOARD)"
 
 	CONFIG_BOARD_NAME="Nitropad t480s | v2.6.2"
 
