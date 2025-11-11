@@ -173,7 +173,7 @@ jobs:
           key: nix-docker-heads-coreboot-musl-cross-make-{{ checksum "./tmpDir/coreboot_musl-cross-make.sha256sums" }}{{ .Environment.CACHE_VERSION }}
           paths:
             - build/x86/coreboot-24.02.01
-            - build/x86/coreboot-24.12
+            - build/x86/coreboot-25.09
             - build/x86/musl-cross-make-fd6be58297ee21fcba89216ccd0d4aca1e3f1c5c
             - crossgcc
             - packages
@@ -189,6 +189,7 @@ jobs:
 workflows:
   version: 2
   build_and_test:
+    max_auto_reruns: 3
     jobs:
       - prep_env
 
@@ -212,13 +213,19 @@ workflows:
           requires:
             - x86-musl-cross-make
 
-      # t480 is based on 24.12 coreboot release, not sharing any buildstack from now, depend on muslc-cross cache
+
+      # t480 is based on 25.09 coreboot release, not sharing any buildstack from now, depend on muscl-cross cache
       - build_and_persist:
           name: EOL_t480-hotp-maximized
           target: EOL_t480-hotp-maximized
           subcommand: ""
           requires:
             - x86-musl-cross-make
+
+      # Make sure workspace caches are chainloaded and the last in chain for an arch is saved
+      - save_cache:
+          requires:
+            - EOL_t480-hotp-maximized
 
       - build:
           name: EOL_t430-hotp-maximized
@@ -227,6 +234,7 @@ workflows:
           requires:
             - EOL_t480-hotp-maximized
 
+
       - build:
           name: EOL_x230-hotp-maximized
           target: EOL_x230-hotp-maximized
@@ -234,7 +242,6 @@ workflows:
           requires:
             - EOL_t480-hotp-maximized
 
-      # t480s is based on 24.12 coreboot release, not sharing any buildstack from now, depend on muslc-cross cache
       - build:
           name: EOL_t480s-hotp-maximized
           target: EOL_t480s-hotp-maximized
