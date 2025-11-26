@@ -20,6 +20,14 @@ else ifeq "EOL_t480s-hotp-maximized" "$(BOARD)"
 
 	CONFIG_BOARD_NAME="Nitropad t480s | v2.6.3"
 
+else ifeq "novacustom-v540tu" "$(BOARD)"
+
+	CONFIG_BOARD_NAME="Nitropad V54 | v2.6.3"
+
+else ifeq "novacustom-v560tu" "$(BOARD)"
+
+	CONFIG_BOARD_NAME="Nitropad V56 | v2.6.3"
+
 else
 
 CONFIG_BOARD_NAME+=" | v2.6.3"
