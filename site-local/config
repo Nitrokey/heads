@@ -28,6 +28,9 @@ else ifeq "novacustom-v560tu" "$(BOARD)"
 
 	CONFIG_BOARD_NAME="Nitropad V56 | v2.6.3"
 
+else ifeq "novacustom-nv4x_adl" "$(BOARD)"
+
+	CONFIG_BOARD_NAME="Nitropad NV40 | v2.6.3"
 else
 
 CONFIG_BOARD_NAME+=" | v2.6.3"
