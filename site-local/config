@@ -1,6 +1,7 @@
 BRAND_NAME=Nitrokey
 
 CONFIG_TPM_NO_LUKS_DISK_UNLOCK=y
+CONFIG_BOOT_RECOVERY_GPG=y 
 
 ifeq "EOL_x230-hotp-maximized" "$(BOARD)"
 
